@@ -2,6 +2,7 @@
 from typing import List, Optional
 from uuid import UUID
 
+from appointments.domain.entities.especialidad import Especialidad
 from appointments.domain.entities.psicologo import Psicologo
 from appointments.infrastructure.models import Psicologo as PsicologoModel
 
@@ -30,4 +31,12 @@ class PsicologoRepository:
             especialidad=entity.especialidad,
             numero_colegiado=entity.numero_colegiado,
             activo=entity.activo
+        )
+    @staticmethod
+    def to_entity(model: Especialidad) -> Especialidad:
+        return Especialidad(
+            id=model.id,
+            nombre=model.nombre,
+            descripcion=model.descripcion,
+            activo=model.activo
         )

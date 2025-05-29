@@ -2,7 +2,7 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 from django.core.exceptions import ValidationError
-from .models import Psicologo
+from .models import Psicologo, Especialidad
 
 @admin.register(Psicologo)
 class PsicologoAdmin(admin.ModelAdmin):
@@ -45,3 +45,10 @@ class PsicologoAdmin(admin.ModelAdmin):
     def desactivar_psicologos(self, request, queryset):
         queryset.update(activo=False)
     desactivar_psicologos.short_description = _('Desactivar psicólogos seleccionados')
+
+@admin.register(Especialidad)
+class EspecialidadAdmin(admin.ModelAdmin):
+    list_display = ('nombre', 'descripcion', 'activo')
+    list_filter = ('activo',)
+    search_fields = ('nombre', 'descripcion')
+    ordering = ('nombre',)
